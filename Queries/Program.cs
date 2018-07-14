@@ -9,7 +9,10 @@ namespace Queries
         {
             var context = new PlutoContext();
             var querry = context.Courses
-                .Where(c => c.FullPrice.ToString().Contains("9"));
+                .Where(c => c.FullPrice.ToString().Contains("9"))
+                .OrderByDescending (c => c.FullPrice);
+                
+
 
             foreach(var c in querry)
             {
