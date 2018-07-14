@@ -8,17 +8,20 @@ namespace Queries
         static void Main(string[] args)
         {
             var context = new PlutoContext();
-            var querry = context.Courses
-                .Where(c => c.FullPrice.ToString().Contains("9"))
-                .OrderByDescending (c => c.FullPrice);
-                
+            var querry = from q in context.Courses
+                         where q.Level == 1
 
+                         orderby q.FullPrice descending
+                         select q;
 
-            foreach(var c in querry)
+            foreach(var p in querry)
             {
-                System.Console.WriteLine(c.FullPrice);
+                System.Console.WriteLine(p.FullPrice);
             }
-                
+
+
+
+
         }
     }
 }
