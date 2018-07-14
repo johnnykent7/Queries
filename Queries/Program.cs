@@ -8,15 +8,14 @@ namespace Queries
         static void Main(string[] args)
         {
             var context = new PlutoContext();
-            var querry = from q in context.Courses
-                         where q.Level == 1
-
-                         orderby q.FullPrice descending
-                         select q;
+            var querry =
+                from c in context.Courses
+                join a in context.Authors on c.AuthorId equals a.Id
+                select new { CourseName = c.Name, AuthorName = a.Name };
 
             foreach(var p in querry)
             {
-                System.Console.WriteLine(p.FullPrice);
+                System.Console.WriteLine(p.CourseName+" "+p.AuthorName);
             }
 
 
