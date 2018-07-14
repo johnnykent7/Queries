@@ -18,6 +18,7 @@ namespace Queries
                 System.Console.WriteLine(ai.Key);
                 foreach(var gi in ai)
                 {
+
                     System.Console.WriteLine("curs name:"+gi.Name+"description name:"+gi.Description);
                 }
             }
