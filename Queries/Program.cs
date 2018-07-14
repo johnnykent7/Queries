@@ -8,20 +8,14 @@ namespace Queries
         static void Main(string[] args)
         {
             var context = new PlutoContext();
-            var querry = from c in context.Courses
-                         group c by c.AuthorId
-                         into g
-                         select g;
+            var querry = context.Courses
+                .Where(c => c.FullPrice.ToString().Contains("9"));
 
-            foreach(var ai in querry)
+            foreach(var c in querry)
             {
-                System.Console.WriteLine(ai.Key);
-                foreach(var gi in ai)
-                {
-
-                    System.Console.WriteLine("curs name:"+gi.Name+"description name:"+gi.Description);
-                }
+                System.Console.WriteLine(c.FullPrice);
             }
+                
         }
     }
 }
