@@ -8,23 +8,16 @@ namespace Queries
     {
         static void Main(string[] args)
         {
-            var contex = new PlutoContext();
-            var querry =
-                    contex.Courses
-                    .GroupBy(c => c.Level);
+            var context = new PlutoContext();
+            var querru =
+                from a in context.Authors
+                join c in context.Courses on a.Id equals c.AuthorId into g
+                select new { authorName = a.Name, Courses = g.Count() };
 
-            foreach(var c in querry)
+            foreach(var c in querru)
             {
-                System.Console.WriteLine(c.Key);
-                foreach(var  b in c)
-                {
-                    System.Console.WriteLine(b.Name);
-                }
+                System.Console.WriteLine(c.authorName + ": " + c.Courses);
             }
-
-
-
-
         }
     }
 }
